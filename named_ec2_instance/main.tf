@@ -3,7 +3,6 @@ data aws_route53_zone "dest" {
 }
 
 resource "aws_instance" "server" {
-  # specific to us-west-1
   ami                    = "${var.ami_id}"
   instance_type          = "${var.instance_type}"
   key_name               = "${var.key_name}"
