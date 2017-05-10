@@ -4,6 +4,10 @@ variable "instance_name" {
   description = "Used to populate the Name tag."
 }
 
+variable "instance_profile_name" {
+  description = "The IAM Instance profile name (string) to launch this instance with."
+  default = ""
+}
 variable "subnet_id" {
   description = "The subnet to place the instance in"
 }
