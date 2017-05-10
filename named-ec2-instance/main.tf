@@ -14,6 +14,7 @@ resource "aws_instance" "server" {
     volume_type = "gp2"
   }
   tags                   = "${var.tags}"
+  volume_tags            = "${var.volume_tags}"
 
   # Clean up local SSH stuff to keep things smooth
   provisioner "local-exec" {

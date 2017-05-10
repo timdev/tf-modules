@@ -44,6 +44,12 @@ variable "tags" {
   default = {}
 }
 
+variable "volume_tags" {
+  type = "map"
+  description = "A mapping of tags to assign to the devices created by the instance at launch time."
+  default = {}
+}
+
 variable "provision_remote_commands" {
   description = "A list of commands to run in a remote-exec provisioner"
   type = "list"
