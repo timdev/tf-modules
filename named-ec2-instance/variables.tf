@@ -30,8 +30,8 @@ variable "vpc_security_group_ids" {
 }
 
 variable "root_block_device" {
-  description = "Config for root block device.  See aws_instance docs."
   type = "map"
+  description = "Config for root block device.  See aws_instance docs."
   default = {
     volume_size = 8
     volume_type = "gp2"
