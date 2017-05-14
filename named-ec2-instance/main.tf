@@ -9,7 +9,10 @@ resource "aws_instance" "server" {
   key_name               = "${var.key_name}"
   subnet_id              = "${var.subnet_id}"
   vpc_security_group_ids =  ["${var.vpc_security_group_ids}"]
-  root_block_device      = "${var.root_block_device}"
+  root_block_device      = {
+    volume_size           = "${lookup(var.root_block_device, "volume_size", 8)}"
+    volume_type           = "${lookup(var.root_block_device, "volume_type", "gp2")}"
+  }
   tags                   = "${var.tags}"
   volume_tags            = "${var.volume_tags}"
 
