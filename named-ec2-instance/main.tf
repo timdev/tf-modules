@@ -18,12 +18,12 @@ resource "aws_instance" "server" {
   volume_tags            = "${var.volume_tags}"
 
   # Clean up local SSH stuff to keep things smooth
-  provisioner "local-exec" {
-    when    = "create"
-    command = <<EOT
-      ssh-keyscan -t rsa -v ${aws_instance.server.public_ip} >> ~/.ssh/known_hosts
-EOT
-  }
+//  provisioner "local-exec" {
+//    when    = "create"
+//    command = <<EOT
+//      ssh-keyscan -t rsa -v ${aws_instance.server.public_ip} >> ~/.ssh/known_hosts
+//EOT
+//  }
 
   provisioner "remote-exec" {
     inline     = [
