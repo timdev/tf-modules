@@ -19,8 +19,9 @@ resource "aws_instance" "server" {
 
   # Clean up local SSH stuff to keep things smooth
   provisioner "local-exec" {
+    when    = "create"
     command = <<EOT
-      ssh-keyscan ${aws_instance.server.public_ip} >> ~/.ssh/known_hosts
+      ssh-keyscan -t rsa -v ${aws_instance.server.public_ip} >> ~/.ssh/known_hosts
 EOT
   }
 
@@ -61,7 +62,7 @@ resource "aws_route53_record" "server" {
   provisioner "local-exec" {
     when    = "create"
     command = <<EOT
-      ssh-keyscan ${self.fqdn} >> ~/.ssh/known_hosts
+      ssh-keyscan -t rsa ${self.fqdn} >> ~/.ssh/known_hosts
       EOT
   }
   provisioner "local-exec" {
