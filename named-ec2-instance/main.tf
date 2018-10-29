@@ -17,14 +17,6 @@ resource "aws_instance" "server" {
   tags                   = "${var.tags}"
   volume_tags            = "${var.volume_tags}"
 
-  # Clean up local SSH stuff to keep things smooth
-//  provisioner "local-exec" {
-//    when    = "create"
-//    command = <<EOT
-//      ssh-keyscan -t rsa -v ${aws_instance.server.public_ip} >> ~/.ssh/known_hosts
-//EOT
-//  }
-
   provisioner "remote-exec" {
     inline     = [
       "sudo apt -y update",
@@ -45,16 +37,14 @@ resource "aws_instance" "server" {
     inline     = [
       "${var.provision_remote_commands}"]
   }
-
 }
 
-
 resource "aws_route53_record" "server" {
-  zone_id    = "${data.aws_route53_zone.dest.id}"
-  name       = "${var.instance_name}"
-  type       = "CNAME"
-  ttl        = 30
-  records    = [
+  zone_id = "${data.aws_route53_zone.dest.id}"
+  name    = "${var.instance_name}"
+  type    = "CNAME"
+  ttl     = 30
+  records = [
     "${aws_instance.server.public_dns}"
   ],
   provisioner "local-exec" {
