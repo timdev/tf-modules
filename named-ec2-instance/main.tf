@@ -50,8 +50,6 @@ EOT
 
 
 resource "aws_route53_record" "server" {
-  depends_on = [
-    "aws_instance.server.id"]
   zone_id    = "${data.aws_route53_zone.dest.id}"
   name       = "${var.instance_name}"
   type       = "CNAME"
