@@ -19,9 +19,9 @@ resource "aws_instance" "server" {
 
   provisioner "remote-exec" {
     inline     = [
-      "sudo apt -y update",
-      "sudo apt -y upgrade",
-      "sudo apt install -y python-minimal"
+      "sudo apt-get -yq update",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get -yq upgrade",
+      "sudo DEBIAN_FRONTEND=noninteractive apt-get -yq install -y python-minimal"
     ]
     connection = {
       type = "ssh"
