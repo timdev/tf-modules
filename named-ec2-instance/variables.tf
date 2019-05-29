@@ -58,7 +58,7 @@ variable "zone_id" {
   description = "The ID of the Route53 zone to add a CNAME to for this host"
 }
 
-variable "count" {
+variable "instance_count" {
   description = "How many of these guys to create"
   default     = "1"
 }
