@@ -45,7 +45,7 @@ resource "aws_route53_record" "server" {
   ttl     = 30
   records = [
     "${aws_instance.server.public_dns}"
-  ],
+  ]
   provisioner "local-exec" {
     when    = "create"
     command = <<EOT
