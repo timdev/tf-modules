@@ -27,30 +27,30 @@ variable "key_name" {
 
 variable "vpc_security_group_ids" {
   description = "IDs of VPC Security Groups to apply to the instnace"
-  type        = "list"
+  type        = list(string)
 }
 
 variable "root_block_device" {
-  type        = "map"
+  type        = map(string)
   description = "Config for root block device.  See aws_instance docs."
   default     = {}
 }
 
 variable "tags" {
-  type        = "map"
+  type        = map(string)
   description = "A map of tag names/values to apply to the instance"
   default     = {}
 }
 
 variable "volume_tags" {
-  type        = "map"
+  type        = map(string)
   description = "A mapping of tags to assign to the devices created by the instance at launch time."
   default     = {}
 }
 
 variable "provision_remote_commands" {
   description = "A list of commands to run in a remote-exec provisioner"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -63,4 +63,6 @@ variable "instance_count" {
   default     = "1"
 }
 
-variable "aws_region" {}
+variable "aws_region" {
+}
+
